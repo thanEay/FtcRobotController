@@ -79,3 +79,7 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# Learning directory in TeamCode
+TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Learning/*
+!TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Learning/README.md
