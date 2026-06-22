@@ -80,6 +80,6 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
-# Learning directory in TeamCode
-TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Learning/*
-!TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Learning/README.md
+# Ignore all student sandbox code, but keep their READMEs
+TeamCode/src/main/java/org/firstinspires/ftc/teamcode/students/**
+!TeamCode/src/main/java/org/firstinspires/ftc/teamcode/students/**/README.md
