@@ -103,6 +103,7 @@ The point vallues extend indefinelt so it could be 0.000000000000000000000000000
             } else {
                 conveyorbelt.setPower(0);     // stop when x is not pressed
             }
+
             intake.setPower(gamepad2.right_trigger * 1);
 
 
