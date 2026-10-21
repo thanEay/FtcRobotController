@@ -83,3 +83,6 @@ lint/tmp/
 # Ignore all student sandbox code, but keep their READMEs
 TeamCode/src/main/java/org/firstinspires/ftc/teamcode/students/**
 !TeamCode/src/main/java/org/firstinspires/ftc/teamcode/students/**/README.md
+
+# Don't track syncthing config folder
+TeamCode/src/main/java/org/firstinspires/ftc/teamcode/.stfolder
