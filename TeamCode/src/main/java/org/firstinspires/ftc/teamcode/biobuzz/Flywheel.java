@@ -23,16 +23,20 @@ public class Flywheel extends OpMode {
         leftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT); // When power is zero, is dead (no movement but no resistance)
+
     }
 
     @Override
     public void loop() {
-        setFlywheelSpeed(gamepad1.left_stick_y * 0.5); // Directionality may need to be flipped
+        setFlywheelSpeed(gamepad1.left_stick_y * 1); // Directionality may need to be flipped
     }
 
     public void setFlywheelSpeed(double speed) { // Sets flywheel speed by setting the speed of two motors on the same shaft
         leftMotor.setPower(speed); // Accepts values from -1.0 to 1.0
-        rightMotor.setPower(-speed);
+        rightMotor.setPower(0); // rightMotor is dead weight (unpowered/coasting) for testing
+        // Reset to the below line after testing is done
+        // rightMotor.setPower(-speed);
     }
     public double getFlywheelRevolutions() { // Get the number of flywheel revolutions. Only checks one motor because they are connected on one shaft and expected to have identical absolute values.
         return leftMotor.getCurrentPosition() / ticksPerRevolution; // Normalizing ticks to revolutions. For a gear ratio, multiply by X:1 ratio. For example, ...PerRevolution * 4; for a 4:1 ratio.
