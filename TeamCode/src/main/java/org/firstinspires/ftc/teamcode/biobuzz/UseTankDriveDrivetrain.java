@@ -8,13 +8,22 @@ import org.firstinspires.ftc.teamcode.hardware.TankDriveDrivetrain;
 @TeleOp
 public class UseTankDriveDrivetrain extends OpMode {
 
+    TankDriveDrivetrain drivetrain = new TankDriveDrivetrain();
+
     @Override
-    public void init() {
-        TankDriveDrivetrain drivetrain = new TankDriveDrivetrain();
+        public void init() {drivetrain.init(hardwareMap);
     }
 
     @Override
     public void loop() {
+        double leftPower = -gamepad1.left_stick_y;
+        double rightPower = -gamepad1.right_stick_y;
+        drivetrain.setBackLeftDcMotor(leftPower);
+        drivetrain.setBackRightDcMotor(rightPower);
 
+        telemetry.addData("Left Power", leftPower);
+        telemetry.addData("Right Power", rightPower);
+        telemetry.addData("Left Motor Revolutions", drivetrain.getBackLeftMotorRevolutions());
+        telemetry.addData("Right Motor Revolutions", drivetrain.getBackRightMotorRevolutions());
     }
 }
