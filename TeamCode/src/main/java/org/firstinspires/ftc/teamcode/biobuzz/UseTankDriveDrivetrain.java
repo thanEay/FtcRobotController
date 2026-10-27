@@ -16,8 +16,8 @@ public class UseTankDriveDrivetrain extends OpMode {
 
     @Override
     public void loop() {
-        double leftPower = -gamepad1.left_stick_y;
-        double rightPower = -gamepad1.right_stick_y;
+        double leftPower = -gamepad1.left_stick_y * 0.3;
+        double rightPower = -gamepad1.right_stick_y * 0.3;
         drivetrain.setBackLeftDcMotor(leftPower);
         drivetrain.setBackRightDcMotor(rightPower);
 

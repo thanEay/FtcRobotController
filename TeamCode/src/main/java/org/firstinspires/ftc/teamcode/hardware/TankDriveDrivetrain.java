@@ -3,17 +3,26 @@ package org.firstinspires.ftc.teamcode.hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-// TODO Add dead weight motors in case there are motors in front
+// TODO Add dead weight motors in case there are motors in front. Actually TODO may already be done.
 public class TankDriveDrivetrain {
 
     private DcMotor backLeftDcMotor;
     private DcMotor backRightDcMotor;
-    private double ticksPerRevolution;
+    private DcMotor frontLeftDcMotor;
+    private DcMotor frontRightDcMotor;
+    private double ticksPerRevolution = 28;
 
     public void init(HardwareMap hwMap) {
         backLeftDcMotor = hwMap.get(DcMotor.class, "backLeft");
         backRightDcMotor = hwMap.get(DcMotor.class, "backRight");
-        ticksPerRevolution = backLeftDcMotor.getMotorType().getTicksPerRev();
+        frontLeftDcMotor = hwMap.get(DcMotor.class, "frontLeft");
+        frontRightDcMotor = hwMap.get(DcMotor.class, "frontRight");
+        backLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeftDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        frontRightDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
+
     }
 
     public double getBackLeftMotorRevolutions() {
