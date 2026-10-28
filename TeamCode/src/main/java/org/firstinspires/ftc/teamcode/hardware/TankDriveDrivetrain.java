@@ -20,9 +20,10 @@ public class TankDriveDrivetrain {
         frontRightDcMotor = hwMap.get(DcMotor.class, "frontRight");
         backLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontLeftDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         frontRightDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-
 
     }
 
@@ -37,6 +38,10 @@ public class TankDriveDrivetrain {
         backLeftDcMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeftDcMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRightDcMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void setBackLeftDcMotor(double speed) {
