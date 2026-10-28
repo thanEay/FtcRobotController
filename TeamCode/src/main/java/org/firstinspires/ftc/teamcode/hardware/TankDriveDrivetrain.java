@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 // TODO Add dead weight motors in case there are motors in front. Actually TODO may already be done.
+// // This code uses the config file "Tank Drive Drivetrain"
 public class TankDriveDrivetrain {
 
     private DcMotor backLeftDcMotor;
