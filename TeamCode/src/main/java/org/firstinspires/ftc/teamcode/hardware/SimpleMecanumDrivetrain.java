@@ -9,6 +9,7 @@ public class SimpleMecanumDrivetrain {
     private DcMotor frontLeftDcMotor;
     private DcMotor frontRightDcMotor;
     private double ticksPerRevolution = 28;
+    private double motorSpeed = 0.5;
 
     public void init(HardwareMap hwMap) { // Motor initializations
         backLeftDcMotor = hwMap.get(DcMotor.class, "backLeft");
@@ -26,30 +27,37 @@ public class SimpleMecanumDrivetrain {
     }
 
     public void moveLeft() {
-        frontLeftDcMotor.setPower(-1.0);
-        frontRightDcMotor.setPower(-1.0);
-        backLeftDcMotor.setPower(1.0);
-        backRightDcMotor.setPower(1.0);
+        frontLeftDcMotor.setPower(-motorSpeed); // Sets motor power
+        frontRightDcMotor.setPower(-motorSpeed); // Sets motor power
+        backLeftDcMotor.setPower(motorSpeed); // Sets motor power
+        backRightDcMotor.setPower(motorSpeed); // Sets motor power
     }
 
     public void moveRight() {
-        frontLeftDcMotor.setPower(1.0);
-        frontRightDcMotor.setPower(1.0);
-        backLeftDcMotor.setPower(-1.0);
-        backRightDcMotor.setPower(-1.0);
+        frontLeftDcMotor.setPower(motorSpeed); // Sets motor power
+        frontRightDcMotor.setPower(motorSpeed); // Sets motor power
+        backLeftDcMotor.setPower(-motorSpeed); // Sets motor power
+        backRightDcMotor.setPower(-motorSpeed); // Sets motor power
     }
 
     public void moveForward() {
-        frontLeftDcMotor.setPower(1.0);
-        frontRightDcMotor.setPower(-1.0);
-        backLeftDcMotor.setPower(1.0);
-        backRightDcMotor.setPower(-1.0);
+        frontLeftDcMotor.setPower(motorSpeed);
+        frontRightDcMotor.setPower(-motorSpeed);
+        backLeftDcMotor.setPower(motorSpeed);
+        backRightDcMotor.setPower(-motorSpeed);
     }
 
     public void moveBackward() {
-        frontLeftDcMotor.setPower(-1.0);
-        frontRightDcMotor.setPower(1.0);
-        backLeftDcMotor.setPower(-1.0);
-        backRightDcMotor.setPower(1.0);
+        frontLeftDcMotor.setPower(-motorSpeed);
+        frontRightDcMotor.setPower(motorSpeed);
+        backLeftDcMotor.setPower(-motorSpeed);
+        backRightDcMotor.setPower(motorSpeed);
+    }
+
+    public void stop() {
+        frontLeftDcMotor.setPower(0);
+        frontRightDcMotor.setPower(0);
+        backLeftDcMotor.setPower(0);
+        backRightDcMotor.setPower(0);
     }
 }

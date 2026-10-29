@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.hardware.Flywheel;
 import org.firstinspires.ftc.teamcode.hardware.Intake;
 import org.firstinspires.ftc.teamcode.hardware.SimpleMecanumDrivetrain;
 
+// // This code uses the config file "Simple Mecanum Drivetrain"
 @TeleOp
 public class FullRobotSimpleMecanum extends OpMode {
 
@@ -38,6 +39,9 @@ public class FullRobotSimpleMecanum extends OpMode {
         }
         else if (gamepad1.dpad_down) {
             drivetrain.moveBackward();
+        }
+        else {
+            drivetrain.stop();
         }
 
         // Intake
