@@ -9,8 +9,6 @@ import org.firstinspires.ftc.teamcode.hardware.Flywheel;
 // This code uses the config file "Flywheel"
 @TeleOp
 public class UseFlywheel extends OpMode {
-    public DcMotor leftMotor;
-    public DcMotor rightMotor;
     private double ticksPerRevolution;
     Flywheel flywheel = new Flywheel();
 

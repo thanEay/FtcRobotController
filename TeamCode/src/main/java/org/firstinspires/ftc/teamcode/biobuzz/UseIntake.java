@@ -4,28 +4,27 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.hardware.Intake;
+
 // This code uses the config file "Flywheel"
 @TeleOp(name = "Intake")
-public class Intake extends OpMode {
+public class UseIntake extends OpMode {
     private static final double MAX_POWER = 1.0;
-
-    private DcMotor intakeMotor;
+    Intake intake = new Intake();
 
     @Override
     public void init() {
-        intakeMotor = hardwareMap.get(DcMotor.class, "leftMotor");
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        intake.init(hardwareMap);
     }
 
     @Override
     public void loop() {
         double power = -gamepad1.left_stick_y * MAX_POWER;
-        intakeMotor.setPower(power);
-        telemetry.addData("Intake power", power);
+        intake.setIntakeMotor(power);
     }
 
     @Override
     public void stop() {
-        intakeMotor.setPower(0);
+        intake.setIntakeMotor(0);
     }
 }
