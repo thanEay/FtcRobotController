@@ -1,23 +1,20 @@
-package org.firstinspires.ftc.teamcode.biobuzz;
+package org.firstinspires.ftc.teamcode.hardware;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-// This code uses the config file "Flywheel"
+// This code uses the config file "Flywheel". TODO Change the variables in the config to "leftFlywheelmotor" and "rightFlywheelMotor"
 @TeleOp
-public class Flywheel extends OpMode {
-    public DcMotor leftMotor;
-    public DcMotor rightMotor;
+public class Flywheel{
+    private DcMotor leftMotor;
+    private DcMotor rightMotor;
+    private double ticksPerRevolution = 28; // Found on the internet
 
-    private double ticksPerRevolution;
-
-    @Override
-    public void init() {
-        leftMotor = hardwareMap.get(DcMotor.class, "leftMotor");
-        rightMotor = hardwareMap.get(DcMotor.class, "rightMotor");
-        ticksPerRevolution = 28; // Found on the internet
+    public void init(HardwareMap hwMap) {
+        leftMotor = hwMap.get(DcMotor.class, "leftFlywheelMotor");
+        rightMotor = hwMap.get(DcMotor.class, "rightFlywheelMotor");
 
         // Ensures that the motors start at zero revolutions at initialization
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -27,15 +24,6 @@ public class Flywheel extends OpMode {
         rightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // When off, will automatically stop
         leftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-    }
-
-    @Override
-    public void loop() {
-        setFlywheelSpeed(gamepad1.left_stick_y * 0.5);
-        telemetry.addData("Flywheel revolutions", getFlywheelRevolutions()); // Uses leftMotor because it is the only one using the encoder
-        if (gamepad1.a) {
-            resetFlywheelRevolutions();
-        }
     }
 
     public void setFlywheelSpeed(double speed) { // Sets flywheel speed by setting the speed of two motors on the same shaft
