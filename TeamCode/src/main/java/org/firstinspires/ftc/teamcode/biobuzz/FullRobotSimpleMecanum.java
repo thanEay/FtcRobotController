@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.hardware.Flywheel;
 import org.firstinspires.ftc.teamcode.hardware.Intake;
 import org.firstinspires.ftc.teamcode.hardware.SimpleMecanumDrivetrain;
 
+//Uses config file Simple Mecanum Full
 @TeleOp
 public class FullRobotSimpleMecanum extends OpMode {
 
