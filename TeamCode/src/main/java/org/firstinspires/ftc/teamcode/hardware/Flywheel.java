@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-// This code uses the config file "Flywheel". TODO Change the variables in the config to "leftFlywheelmotor" and "rightFlywheelMotor"
+// This code uses the config file "Flywheel"
 @TeleOp
 public class Flywheel{
     private DcMotor leftMotor;
@@ -30,8 +30,13 @@ public class Flywheel{
         leftMotor.setPower(-speed); // Accepts values from -1.0 to 1.0
         rightMotor.setPower(speed);
 //        rightMotor.setPower(0); // rightMotor is dead weight (unpowered/coasting) for testing
-
     }
+
+    public void stopFlywheel() {
+        leftMotor.setPower(0); // Accepts values from -1.0 to 1.0
+        rightMotor.setPower(0);
+    }
+
     public double getFlywheelRevolutions() { // Get the number of flywheel revolutions. Only checks one motor because they are connected on one shaft and expected to have identical absolute values.
         return leftMotor.getCurrentPosition() / ticksPerRevolution; // Normalizing ticks to revolutions. For a gear ratio, multiply by X:1 ratio. For example, ...PerRevolution * 4; for a 4:1 ratio.
     }
