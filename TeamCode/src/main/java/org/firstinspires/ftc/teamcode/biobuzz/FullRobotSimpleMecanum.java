@@ -40,6 +40,9 @@ public class FullRobotSimpleMecanum extends OpMode {
         else if (gamepad1.dpad_down) {
             drivetrain.moveBackward();
         }
+        else {
+            drivetrain.stop();
+        }
 
         // Intake
         double power = -gamepad1.left_stick_y * intakeMaxPower; // Define the power
