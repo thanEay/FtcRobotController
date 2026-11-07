@@ -16,10 +16,10 @@ public class SimpleMecanumDrivetrain {
         backRightDcMotor = hwMap.get(DcMotor.class, "backRight");
         frontLeftDcMotor = hwMap.get(DcMotor.class, "frontLeft");
         frontRightDcMotor = hwMap.get(DcMotor.class, "frontRight");
-        backLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeftDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backRightDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontLeftDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRightDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeftDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         backRightDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         frontLeftDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -51,6 +51,20 @@ public class SimpleMecanumDrivetrain {
         frontLeftDcMotor.setPower(-motorSpeed);
         frontRightDcMotor.setPower(motorSpeed);
         backLeftDcMotor.setPower(-motorSpeed);
+        backRightDcMotor.setPower(motorSpeed);
+    }
+
+    public void turnLeft() {
+        frontLeftDcMotor.setPower(-motorSpeed);
+        frontRightDcMotor.setPower(-motorSpeed);
+        backLeftDcMotor.setPower(-motorSpeed);
+        backRightDcMotor.setPower(-motorSpeed);
+    }
+
+    public void turnRight() {
+        frontLeftDcMotor.setPower(motorSpeed);
+        frontRightDcMotor.setPower(motorSpeed);
+        backLeftDcMotor.setPower(motorSpeed);
         backRightDcMotor.setPower(motorSpeed);
     }
 

@@ -40,13 +40,23 @@ public class FullRobotSimpleMecanum extends OpMode {
         else if (gamepad1.dpad_down) {
             drivetrain.moveBackward();
         }
+        else if (gamepad1.right_stick_x > 0) {
+            drivetrain.turnLeft();
+        }
+        else if (gamepad1.right_stick_x < 0) {
+            drivetrain.turnRight();
+        }
         else {
             drivetrain.stop();
         }
 
         // Intake
-        double power = -gamepad1.left_stick_y * intakeMaxPower; // Define the power
-        intake.setIntakeMotor(power); // Set intake power
+        if (gamepad1.right_trigger_pressed) {
+            intake.setIntakeMotor(intakeMaxPower); // Set intake power
+        }
+        else {
+            intake.setIntakeMotor(0);
+        }
 
         // Flywheel
         if (gamepad1.left_trigger_pressed) {
