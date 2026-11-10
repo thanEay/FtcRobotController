@@ -68,6 +68,20 @@ public class SimpleMecanumDrivetrain {
         backRightDcMotor.setPower(motorSpeed);
     }
 
+    public void turnLeftWithPower(double multiplier) {
+        frontLeftDcMotor.setPower(-motorSpeed * multiplier);
+        frontRightDcMotor.setPower(-motorSpeed * multiplier);
+        backLeftDcMotor.setPower(-motorSpeed * multiplier);
+        backRightDcMotor.setPower(-motorSpeed * multiplier);
+    }
+
+    public void turnRightWithPower(double multiplier) {
+        frontLeftDcMotor.setPower(motorSpeed * multiplier);
+        frontRightDcMotor.setPower(motorSpeed * multiplier);
+        backLeftDcMotor.setPower(motorSpeed * multiplier);
+        backRightDcMotor.setPower(motorSpeed * multiplier);
+    }
+
     public void stop() {
         frontLeftDcMotor.setPower(0);
         frontRightDcMotor.setPower(0);

@@ -41,10 +41,10 @@ public class FullRobotSimpleMecanum extends OpMode {
             drivetrain.moveBackward();
         }
         else if (gamepad1.right_stick_x > 0) {
-            drivetrain.turnLeft();
+            drivetrain.turnLeftWithPower(gamepad1.right_stick_x);
         }
         else if (gamepad1.right_stick_x < 0) {
-            drivetrain.turnRight();
+            drivetrain.turnRightWithPower(-gamepad1.right_stick_x);
         }
         else {
             drivetrain.stop();
