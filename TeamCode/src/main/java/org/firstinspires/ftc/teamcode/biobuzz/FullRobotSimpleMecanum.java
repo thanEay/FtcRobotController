@@ -15,7 +15,7 @@ public class FullRobotSimpleMecanum extends OpMode {
     SimpleMecanumDrivetrain drivetrain = new SimpleMecanumDrivetrain();
     Intake intake = new Intake();
     private static final double intakeMaxPower = 1.0;
-    private static final double flywheelMaxPower = 0.3;
+    private static final double flywheelMaxPower = 0.7;
 
 
     @Override
@@ -53,6 +53,9 @@ public class FullRobotSimpleMecanum extends OpMode {
         // Intake
         if (gamepad1.right_trigger_pressed) {
             intake.setIntakeMotor(intakeMaxPower); // Set intake power
+        }
+        else if (gamepad1.right_bumper) {
+            intake.setIntakeMotor(-0.7 * intakeMaxPower); // Allow intake to push ball back out
         }
         else {
             intake.setIntakeMotor(0);

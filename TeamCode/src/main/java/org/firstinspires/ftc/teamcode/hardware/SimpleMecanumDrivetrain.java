@@ -9,7 +9,7 @@ public class SimpleMecanumDrivetrain {
     private DcMotor frontLeftDcMotor;
     private DcMotor frontRightDcMotor;
     private double ticksPerRevolution = 28;
-    private double motorSpeed = 0.5;
+    private double motorSpeed = 0.75;
 
     public void init(HardwareMap hwMap) { // Motor initializations
         backLeftDcMotor = hwMap.get(DcMotor.class, "backLeft");
