@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.hardware.Flywheel;
 import org.firstinspires.ftc.teamcode.hardware.Intake;
+import org.firstinspires.ftc.teamcode.hardware.ServoGates;
 import org.firstinspires.ftc.teamcode.hardware.SimpleMecanumDrivetrain;
 
 //Uses config file Simple Mecanum Full
@@ -14,6 +15,7 @@ public class FullRobotSimpleMecanum extends OpMode {
     Flywheel flywheel = new Flywheel();
     SimpleMecanumDrivetrain drivetrain = new SimpleMecanumDrivetrain();
     Intake intake = new Intake();
+    ServoGates servoGates = new ServoGates();
     private static final double intakeMaxPower = 1.0;
     private static final double flywheelMaxPower = 0.7;
 
@@ -23,6 +25,7 @@ public class FullRobotSimpleMecanum extends OpMode {
         flywheel.init(hardwareMap);
         drivetrain.init(hardwareMap);
         intake.init(hardwareMap);
+        servoGates.init(hardwareMap);
     }
 
     @Override
@@ -67,6 +70,21 @@ public class FullRobotSimpleMecanum extends OpMode {
         }
         else {
             flywheel.stopFlywheel();
+        }
+
+        // Servo Gates
+        if (gamepad1.left_stick_button) {
+            servoGates.openPollenServo();
+        }
+        else {
+            servoGates.closePollenServo();
+        }
+
+        if (gamepad1.right_stick_button) {
+            servoGates.openNectarServo();
+        }
+        else {
+            servoGates.closeNectarServo();
         }
     }
 
