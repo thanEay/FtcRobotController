@@ -22,5 +22,12 @@ public class UseServoGates extends OpMode {
         else {
             servoGates.closePollenServo();
         }
+        if (gamepad1.left_trigger_pressed) {
+            servoGates.openNectarServo();
+        }
+        else {
+            servoGates.closeNectarServo();
+        }
+
     }
 }
