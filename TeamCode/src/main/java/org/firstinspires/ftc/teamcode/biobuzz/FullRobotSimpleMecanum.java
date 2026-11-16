@@ -18,6 +18,7 @@ public class FullRobotSimpleMecanum extends OpMode {
     ServoGates servoGates = new ServoGates();
     private static final double intakeMaxPower = 1.0;
     private static final double flywheelMaxPower = 0.7;
+    private boolean continuousIntake = false;
 
 
     @Override
@@ -56,12 +57,22 @@ public class FullRobotSimpleMecanum extends OpMode {
         // Intake
         if (gamepad1.right_trigger_pressed) {
             intake.setIntakeMotor(intakeMaxPower); // Set intake power
+            continuousIntake = true;
         }
         else if (gamepad1.right_bumper) {
             intake.setIntakeMotor(-0.7 * intakeMaxPower); // Allow intake to push ball back out
+            continuousIntake = false;
         }
         else {
-            intake.setIntakeMotor(0);
+            if (continuousIntake) {
+                intake.setIntakeMotor(0.5);
+            }
+            else {
+                intake.setIntakeMotor(0);
+            }
+        }
+        if (gamepad1.touchpadWasPressed()) {
+            continuousIntake = false;
         }
 
         // Flywheel
@@ -73,14 +84,14 @@ public class FullRobotSimpleMecanum extends OpMode {
         }
 
         // Servo Gates
-        if (gamepad1.left_stick_button) {
+        if (gamepad1.cross) {
             servoGates.openPollenServo();
         }
         else {
             servoGates.closePollenServo();
         }
 
-        if (gamepad1.right_stick_button) {
+        if (gamepad1.circle) {
             servoGates.openNectarServo();
         }
         else {
