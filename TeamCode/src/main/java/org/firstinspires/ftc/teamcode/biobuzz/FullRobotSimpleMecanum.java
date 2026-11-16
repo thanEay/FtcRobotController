@@ -64,14 +64,17 @@ public class FullRobotSimpleMecanum extends OpMode {
             continuousIntake = false;
         }
         else {
+            /* Uncomment for the intake to be continuously on
             if (continuousIntake) {
                 intake.setIntakeMotor(0.5);
             }
             else {
                 intake.setIntakeMotor(0);
             }
+            */
+            intake.setIntakeMotor(0);
         }
-        if (gamepad1.touchpadWasPressed()) {
+        if (gamepad1.touchpadWasPressed()) { // Code for disabling continuousIntake, currently practically unused
             continuousIntake = false;
         }
 
