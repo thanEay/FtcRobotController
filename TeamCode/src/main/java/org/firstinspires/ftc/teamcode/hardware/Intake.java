@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 // This code does not have a dedicated config file, but it works with
-@TeleOp(name = "Intake")
 public class Intake {
     private DcMotor intakeMotor;
 
