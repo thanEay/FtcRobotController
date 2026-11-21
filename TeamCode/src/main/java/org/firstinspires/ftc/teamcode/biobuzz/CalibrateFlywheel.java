@@ -22,17 +22,25 @@ public void init() {
 public void loop() {
     if (!dpadWasPressed) {
         if (gamepad1.dpad_up) {
-            flyWheelPower += 0.25;
+            flyWheelPower += 0.05;
             dpadWasPressed = true;
         }
         if(gamepad1.dpad_down) {
-            flyWheelPower -= 0.25;
+            flyWheelPower -= 0.05;
             dpadWasPressed = true;
         }
     }
     if (!gamepad1.dpad_up && !gamepad1.dpad_down) {
         dpadWasPressed = false;
     }
+
+    if (flyWheelPower > 1) {
+        flyWheelPower = 1;
+    }
+    if (flyWheelPower < 0) {
+        flyWheelPower = 0;
+    }
+
     telemetry.addData("Flywheel power", (flyWheelPower * 100));
     telemetry.update();
     }
