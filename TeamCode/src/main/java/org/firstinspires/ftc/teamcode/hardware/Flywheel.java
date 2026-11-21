@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 // This code uses the config file "Flywheel"
+
+// If we ever want to use custom PID, we need to use DcMotorEx for manual velocity control
 public class Flywheel{
     private DcMotor leftMotor;
     private DcMotor rightMotor;
