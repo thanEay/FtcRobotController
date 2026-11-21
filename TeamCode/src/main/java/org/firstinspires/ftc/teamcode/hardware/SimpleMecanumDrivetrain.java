@@ -9,17 +9,17 @@ public class SimpleMecanumDrivetrain {
     private DcMotor frontLeftDcMotor;
     private DcMotor frontRightDcMotor;
     private double ticksPerRevolution = 28;
-    private double motorSpeed = 0.75;
+    private double motorSpeed = 0.8;
 
     public void init(HardwareMap hwMap) { // Motor initializations
         backLeftDcMotor = hwMap.get(DcMotor.class, "backLeft");
         backRightDcMotor = hwMap.get(DcMotor.class, "backRight");
         frontLeftDcMotor = hwMap.get(DcMotor.class, "frontLeft");
         frontRightDcMotor = hwMap.get(DcMotor.class, "frontRight");
-        backLeftDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        backRightDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontLeftDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontRightDcMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeftDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRightDcMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeftDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         backRightDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         frontLeftDcMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
