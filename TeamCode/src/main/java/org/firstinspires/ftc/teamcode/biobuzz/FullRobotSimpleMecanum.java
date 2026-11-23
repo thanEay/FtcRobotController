@@ -17,7 +17,7 @@ public class FullRobotSimpleMecanum extends OpMode {
     Intake intake = new Intake();
     ServoGates servoGates = new ServoGates();
     private static final double intakeMaxPower = 1.0;
-    private static final double flywheelMaxPower = 0.7;
+    private static final double flywheelMaxPower = 0.5;
     private boolean continuousIntake = false;
 
 
