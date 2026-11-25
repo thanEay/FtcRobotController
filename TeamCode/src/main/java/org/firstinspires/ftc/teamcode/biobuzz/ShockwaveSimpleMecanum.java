@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.hardware.SimpleMecanumDrivetrain;
 
 //Uses config file Simple Mecanum Full
 @TeleOp
-public class FullRobotSimpleMecanum extends OpMode {
+public class ShockwaveSimpleMecanum extends OpMode {
 
     Flywheel flywheel = new Flywheel();
     SimpleMecanumDrivetrain drivetrain = new SimpleMecanumDrivetrain();
