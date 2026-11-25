@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.biobuzz;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -8,6 +9,7 @@ import org.firstinspires.ftc.teamcode.hardware.Intake;
 import org.firstinspires.ftc.teamcode.hardware.ServoGates;
 
 @TeleOp
+@Disabled
 public class CalibrateFlywheel extends OpMode {
 
     Flywheel flywheel = new Flywheel();

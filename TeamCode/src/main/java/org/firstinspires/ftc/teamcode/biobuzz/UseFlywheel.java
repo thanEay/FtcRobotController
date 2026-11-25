@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.biobuzz;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,6 +9,7 @@ import org.firstinspires.ftc.teamcode.hardware.Flywheel;
 
 // This code uses the config file "Flywheel"
 @TeleOp
+@Disabled
 public class UseFlywheel extends OpMode {
     private double ticksPerRevolution;
     Flywheel flywheel = new Flywheel();
