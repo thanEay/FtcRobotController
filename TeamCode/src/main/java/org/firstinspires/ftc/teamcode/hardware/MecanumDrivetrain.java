@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+
 public class MecanumDrivetrain {
 
     private DcMotor backLeftDcMotor, backRightDcMotor, frontLeftDcMotor, frontRightDcMotor;
@@ -57,5 +59,19 @@ public class MecanumDrivetrain {
         backRightDcMotor.setPower(maxSpeed * (frontRightPower / maxPower));
         frontLeftDcMotor.setPower(maxSpeed * (backLeftPower / maxPower));
         frontRightDcMotor.setPower(maxSpeed * (backRightPower / maxPower));
+    }
+
+    // Comment out the rest of the code to have robot relative drive
+    public void driveFieldRelative(double forward, double strafe, double rotate) {
+        double theta = Math.atan2(forward, strafe);
+        double r = Math.hypot(strafe, forward);
+
+        theta = AngleUnit.normalizeRadians(theta- // Find the angle to drive
+                imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
+
+        double newForward = r * Math.sin(theta);
+        double newStrafe = r * Math.cos(theta);
+
+        this.drive(newForward, newStrafe, rotate); // This line actually makes the robot drive
     }
 }
