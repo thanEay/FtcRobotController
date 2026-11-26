@@ -17,7 +17,7 @@ Flywheel flywheel = new Flywheel();
 Intake intake = new Intake();
 ServoGates servoGates = new ServoGates();
 private static final double intakeMaxPower = 1.0;
-private static final double flywheelMaxPower = 0.5;
+double flywheelMaxPower = 0.5;
 double forward, strafe, rotate;
 
     @Override
@@ -52,6 +52,15 @@ double forward, strafe, rotate;
         else {
             flywheel.stopFlywheel();
         }
+        if (gamepad2.dpad_up) {
+            flywheelMaxPower += 0.05;
+        }
+        if (gamepad2.dpad_down) {
+            flywheelMaxPower -= 0.05;
+        }
+        double flywheelPowerPercent = flywheelMaxPower * 100;
+        telemetry.addData("Flywheel Max Power %", flywheelPowerPercent);
+
 
         // Servo Gates
         if (gamepad2.cross) {
