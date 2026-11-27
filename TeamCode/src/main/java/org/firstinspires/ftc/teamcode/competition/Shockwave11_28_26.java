@@ -35,14 +35,23 @@ private boolean dpadWasPressed = false;
     public void loop() {
 
         // Mecanum drivetrain
-        if (gamepad1.left_stick_y > 0.1) {
+        if (Math.abs(gamepad1.left_stick_y) > 0.1) {
             forward = -gamepad1.left_stick_y;
         }
-        if (gamepad1.left_stick_x > 0.1) {
+        else{
+            forward = 0;
+        }
+        if (Math.abs(gamepad1.left_stick_x) > 0.1) {
             strafe = gamepad1.left_stick_x;
         }
-        if (gamepad1.right_stick_x > 0.1) {
+        else{
+            strafe = 0;
+        }
+        if (Math.abs(gamepad1.right_stick_x) > 0.1) {
             rotate = gamepad1.right_stick_x;
+        }
+        else{
+            rotate = 0;
         }
         // Dpad controls for mecanum
         if (gamepad1.dpad_up) {
