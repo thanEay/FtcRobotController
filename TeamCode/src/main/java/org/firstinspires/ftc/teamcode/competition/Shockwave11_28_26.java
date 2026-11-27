@@ -18,7 +18,7 @@ Flywheel flywheel = new Flywheel();
 Intake intake = new Intake();
 ServoGates servoGates = new ServoGates();
 private static final double intakeMaxPower = 1.0;
-double flywheelPower = 0.7;
+double flywheelPower, flyweelPowerOG = 0.7;
 double forward, strafe, rotate;
 private boolean dpadWasPressed = false;
 
@@ -96,9 +96,12 @@ private boolean dpadWasPressed = false;
                 flywheelPower += 0.05;
                 dpadWasPressed = true;
             }
-            else if(gamepad2.dpad_down) {
+            else if (gamepad2.dpad_down) {
                 flywheelPower -= 0.05;
                 dpadWasPressed = true;
+            }
+            else if (gamepad2.dpad_left || gamepad2.dpad_right) {
+                flywheelPower = flyweelPowerOG;
             }
         }
         if (!gamepad2.dpad_up && !gamepad2.dpad_down) {
