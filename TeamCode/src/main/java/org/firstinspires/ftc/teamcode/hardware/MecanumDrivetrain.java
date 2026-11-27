@@ -55,10 +55,10 @@ public class MecanumDrivetrain {
         maxPower = Math.max(maxPower, Math.abs(backRightPower));
         maxPower = Math.max(maxPower, Math.abs(backLeftPower));
 
-        backLeftDcMotor.setPower(maxSpeed * (frontLeftPower / maxPower));
-        backRightDcMotor.setPower(maxSpeed * (frontRightPower / maxPower));
-        frontLeftDcMotor.setPower(maxSpeed * (backLeftPower / maxPower));
-        frontRightDcMotor.setPower(maxSpeed * (backRightPower / maxPower));
+        backLeftDcMotor.setPower(maxSpeed * (backLeftPower / maxPower));
+        backRightDcMotor.setPower(maxSpeed * (backRightPower / maxPower));
+        frontLeftDcMotor.setPower(maxSpeed * (frontLeftPower / maxPower));
+        frontRightDcMotor.setPower(maxSpeed * (frontRightPower / maxPower));
     }
 
     // Comment out the rest of the code to have robot relative drive

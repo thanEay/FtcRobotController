@@ -18,7 +18,7 @@ Flywheel flywheel = new Flywheel();
 Intake intake = new Intake();
 ServoGates servoGates = new ServoGates();
 private static final double intakeMaxPower = 1.0;
-double flywheelPower = 0.5;
+double flywheelPower = 0.7;
 double forward, strafe, rotate;
 private boolean dpadWasPressed = false;
 
@@ -38,7 +38,7 @@ private boolean dpadWasPressed = false;
         forward = -gamepad1.left_stick_y;
         strafe = gamepad1.left_stick_x;
         rotate = gamepad1.right_stick_x;
-        drivetrain.driveFieldRelative(forward, strafe, rotate); // Use .driveFieldRelative for field relative or .drive for robot relative
+        drivetrain.drive(forward, strafe, rotate); // Use .driveFieldRelative for field relative or .drive for robot relative
 
         // Intake
         if (gamepad2.right_trigger_pressed) {
@@ -60,16 +60,16 @@ private boolean dpadWasPressed = false;
         }
         // Adjust flywheel power on the fly
         if (!dpadWasPressed) {
-            if (gamepad1.dpad_up) {
+            if (gamepad2.dpad_up) {
                 flywheelPower += 0.05;
                 dpadWasPressed = true;
             }
-            if(gamepad1.dpad_down) {
+            else if(gamepad2.dpad_down) {
                 flywheelPower -= 0.05;
                 dpadWasPressed = true;
             }
         }
-        if (!gamepad1.dpad_up && !gamepad1.dpad_down) {
+        if (!gamepad2.dpad_up && !gamepad2.dpad_down) {
             dpadWasPressed = false;
         }
 
@@ -80,16 +80,16 @@ private boolean dpadWasPressed = false;
             flywheelPower = 0;
         }
         // Print flywheel power as a percentage
-        double flywheelPowerPercent = Math.round(flywheelPower * 100.0) / 100.0;
+        double flywheelPowerPercent = Math.round(flywheelPower * 100.0);
         telemetry.addData("Flywheel Max Power %", flywheelPowerPercent + "%");
 
 
         // Servo Gates
         if (gamepad2.cross) {
-            servoGates.openPollenServo();
+            servoGates.openNectarServo();
         }
         else {
-            servoGates.closePollenServo();
+            servoGates.closeNectarServo();
         }
     }
 
