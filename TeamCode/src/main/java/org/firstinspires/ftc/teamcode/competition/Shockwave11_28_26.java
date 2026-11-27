@@ -35,6 +35,7 @@ private boolean dpadWasPressed = false;
     public void loop() {
 
         // Mecanum drivetrain
+        // Uses absolute values > 0.1 to prevent stick drift
         if (Math.abs(gamepad1.left_stick_y) > 0.1) {
             forward = -gamepad1.left_stick_y;
         }
