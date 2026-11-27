@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.hardware.MecanumDrivetrain;
 import org.firstinspires.ftc.teamcode.hardware.ServoGates;
 import org.firstinspires.ftc.teamcode.hardware.SimpleMecanumDrivetrain;
 
-@TeleOp
+@TeleOp(name="Comp Code TeleOp")
 public class Shockwave11_28_26 extends OpMode {
 
 MecanumDrivetrain drivetrain = new MecanumDrivetrain();
@@ -35,10 +35,16 @@ private boolean dpadWasPressed = false;
     public void loop() {
 
         // Mecanum drivetrain
-        forward = -gamepad1.left_stick_y;
-        strafe = gamepad1.left_stick_x;
-        rotate = gamepad1.right_stick_x;
-        // Dpad controls
+        if (gamepad1.left_stick_y > 0.1) {
+            forward = -gamepad1.left_stick_y;
+        }
+        if (gamepad1.left_stick_x > 0.1) {
+            strafe = gamepad1.left_stick_x;
+        }
+        if (gamepad1.right_stick_x > 0.1) {
+            rotate = gamepad1.right_stick_x;
+        }
+        // Dpad controls for mecanum
         if (gamepad1.dpad_up) {
             forward = 1;
         }
@@ -51,8 +57,10 @@ private boolean dpadWasPressed = false;
         if (gamepad1.dpad_down) {
             forward = -1;
         }
-
         drivetrain.drive(forward, strafe, rotate); // Use .driveFieldRelative for field relative or .drive for robot relative
+        if (gamepad1.touchpadWasPressed()) {
+            drivetrain.resetIMU(); // Reset the IMU to ensure accurate field-relative driving
+        }
 
         // Intake
         if (gamepad2.right_trigger_pressed) {
@@ -96,7 +104,6 @@ private boolean dpadWasPressed = false;
         // Print flywheel power as a percentage
         double flywheelPowerPercent = Math.round(flywheelPower * 100.0);
         telemetry.addData("Flywheel Max Power %", flywheelPowerPercent + "%");
-
 
         // Servo Gates
         if (gamepad2.cross) {

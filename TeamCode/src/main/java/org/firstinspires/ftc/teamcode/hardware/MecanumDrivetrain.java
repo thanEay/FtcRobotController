@@ -35,7 +35,7 @@ public class MecanumDrivetrain {
         imu = hwMap.get(IMU.class, "imu"); // "imu" is the default name in the Control Hub
 
         RevHubOrientationOnRobot RevOrientation = new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD,
+                RevHubOrientationOnRobot.LogoFacingDirection.UP,
                 RevHubOrientationOnRobot.UsbFacingDirection.RIGHT);
 
         imu.initialize(new IMU.Parameters(RevOrientation)); // Initializing the IMU. Tbh I don't know how this line works
@@ -61,7 +61,7 @@ public class MecanumDrivetrain {
         frontRightDcMotor.setPower(maxSpeed * (frontRightPower / maxPower));
     }
 
-    // Comment out the rest of the code to have robot relative drive
+    // The rest of the code is for robot relative drive
     public void driveFieldRelative(double forward, double strafe, double rotate) {
         double theta = Math.atan2(forward, strafe);
         double r = Math.hypot(strafe, forward);
@@ -73,5 +73,9 @@ public class MecanumDrivetrain {
         double newStrafe = r * Math.cos(theta);
 
         this.drive(newForward, newStrafe, rotate); // This line actually makes the robot drive
+    }
+
+    public void resetIMU() {
+        imu.resetYaw();
     }
 }
