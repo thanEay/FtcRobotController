@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.competition;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.hardware.Flywheel;
 import org.firstinspires.ftc.teamcode.hardware.Intake;
@@ -17,19 +18,24 @@ Flywheel flywheel = new Flywheel();
 Intake intake = new Intake();
 ServoGates servoGates = new ServoGates();
 private static final double intakeMaxPower = 1.0;
-double flywheelMaxPower = 0.5;
+double flywheelPower = 0.5;
 double forward, strafe, rotate;
+private boolean dpadWasPressed = false;
+
 
     @Override
     public void init() {
         drivetrain.init(hardwareMap);
+        flywheel.init(hardwareMap);
+        intake.init(hardwareMap);
+        servoGates.init(hardwareMap);
     }
 
     @Override
     public void loop() {
 
         // Mecanum drivetrain
-        forward = gamepad1.left_stick_y;
+        forward = -gamepad1.left_stick_y;
         strafe = gamepad1.left_stick_x;
         rotate = gamepad1.right_stick_x;
         drivetrain.driveFieldRelative(forward, strafe, rotate); // Use .driveFieldRelative for field relative or .drive for robot relative
@@ -47,19 +53,35 @@ double forward, strafe, rotate;
 
         // Flywheel
         if (gamepad2.left_trigger_pressed) {
-            flywheel.setFlywheelSpeed(flywheelMaxPower); // Set flywheel speed
+            flywheel.setFlywheelSpeed(flywheelPower); // Set flywheel speed
         }
         else {
             flywheel.stopFlywheel();
         }
-        if (gamepad2.dpad_up) {
-            flywheelMaxPower += 0.05;
+        // Adjust flywheel power on the fly
+        if (!dpadWasPressed) {
+            if (gamepad1.dpad_up) {
+                flywheelPower += 0.05;
+                dpadWasPressed = true;
+            }
+            if(gamepad1.dpad_down) {
+                flywheelPower -= 0.05;
+                dpadWasPressed = true;
+            }
         }
-        if (gamepad2.dpad_down) {
-            flywheelMaxPower -= 0.05;
+        if (!gamepad1.dpad_up && !gamepad1.dpad_down) {
+            dpadWasPressed = false;
         }
-        double flywheelPowerPercent = flywheelMaxPower * 100;
-        telemetry.addData("Flywheel Max Power %", flywheelPowerPercent);
+
+        if (flywheelPower > 1) {
+            flywheelPower = 1;
+        }
+        if (flywheelPower < 0) {
+            flywheelPower = 0;
+        }
+        // Print flywheel power as a percentage
+        double flywheelPowerPercent = Math.round(flywheelPower * 100.0) / 100.0;
+        telemetry.addData("Flywheel Max Power %", flywheelPowerPercent + "%");
 
 
         // Servo Gates
