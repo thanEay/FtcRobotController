@@ -38,6 +38,20 @@ private boolean dpadWasPressed = false;
         forward = -gamepad1.left_stick_y;
         strafe = gamepad1.left_stick_x;
         rotate = gamepad1.right_stick_x;
+        // Dpad controls
+        if (gamepad1.dpad_up) {
+            forward = 1;
+        }
+        if (gamepad1.dpad_left) {
+            strafe = -1;
+        }
+        if (gamepad1.dpad_right) {
+            strafe = 1;
+        }
+        if (gamepad1.dpad_down) {
+            forward = -1;
+        }
+
         drivetrain.drive(forward, strafe, rotate); // Use .driveFieldRelative for field relative or .drive for robot relative
 
         // Intake
