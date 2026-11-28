@@ -26,27 +26,22 @@ public class AutonomousFallback extends LinearOpMode {
 
         runtime.reset(); // Resets timer
 
-        // Step 1: Spin up flywheel
-        if (opModeIsActive()) {
-            flywheel.setFlywheelSpeed(0.6); // Sets flywheel speed to 60% power
-            sleep(2000); // Waits 2 seconds for flywheel to spin up
-        }
 
-        // Step 2: Drive forward
+        // Drive forward a little
         if (opModeIsActive()) {
             drivetrain.drive(0.5, 0.0, 0.0); // Drives forward at 50% power
-            sleep(1000); // Drives forward for 1 second
+            sleep(100); // Drives forward for 0.1 seconds
             drivetrain.drive(0.0, 0.0, 0.0); // Stops drivetrain
         }
 
-        // Step 3: Strafe right
+        // Strafe left
         if (opModeIsActive()) {
-            drivetrain.drive(0.0, 0.5, 0.0); // Strafes right at 50% power
-            sleep(2000); // Strafes right for 2 seconds
+            drivetrain.drive(0.0, -0.5, 0.0); // Strafes right at 50% power
+            sleep(2000);
             drivetrain.drive(0.0, 0.0, 0.0); // Stops drivetrain
         }
 
-        // Step 4: Stop all systems
+        // Stop all systems
         flywheel.stopFlywheel(); // Stops flywheel motor
         drivetrain.drive(0.0, 0.0, 0.0); // Ensures drivetrain is stopped
 
