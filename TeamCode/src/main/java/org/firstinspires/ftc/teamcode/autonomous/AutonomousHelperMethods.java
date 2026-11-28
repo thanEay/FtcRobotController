@@ -36,4 +36,10 @@ public class AutonomousHelperMethods {
     public void moveRight() {
         drivetrain.driveFieldRelative(0, 1, 0);
     }
+    public void turnLeft() {
+        drivetrain.driveFieldRelative(0, 0, -1);
+    }
+    public void turnRight() {
+        drivetrain.driveFieldRelative(0, 0, 1);
+    }
 }

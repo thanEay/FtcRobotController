@@ -14,69 +14,43 @@ public class ShootAndStrafe extends LinearOpMode {
     Flywheel flywheel = new Flywheel();
     ElapsedTime runtime = new ElapsedTime();
 
-    private enum AutoState {
-        START_FLYWHEEL,
-        DRIVE_FORWARD,
-        STRAFE_RIGHT,
-        STOP_ROBOT,
-        DONE
-    }
-
-    private AutoState state = AutoState.START_FLYWHEEL;
-
     @Override
     public void runOpMode() {
-        drivetrain.init(hardwareMap);
-        flywheel.init(hardwareMap);
+        drivetrain.init(hardwareMap); // Initializes drivetrain hardware
+        flywheel.init(hardwareMap); // Initializes flywheel hardware
 
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
+        telemetry.addData("Status", "Initialized"); // Displays status on Driver Station
+        telemetry.update(); // Updates telemetry display
 
-        waitForStart();
+        waitForStart(); // Waits for driver to press Play
 
-        runtime.reset();
+        runtime.reset(); // Resets timer
 
-        while (opModeIsActive() && !isStopRequested()) {
-
-            switch (state) {
-                case START_FLYWHEEL:
-                    flywheel.setFlywheelSpeed(0.6); // Turn on flywheel to 60% power
-                    runtime.reset();
-                    state = AutoState.DRIVE_FORWARD;
-                    break;
-
-                case DRIVE_FORWARD:
-                    drivetrain.drive(0.5, 0.0, 0.0); // Drive forward at 50% power
-                    if (runtime.seconds() >= 1.0) { // Drive forward for 1 second
-                        drivetrain.drive(0.0, 0.0, 0.0); // Stop driving
-                        runtime.reset();
-                        state = AutoState.STRAFE_RIGHT;
-                    }
-                    break;
-
-                case STRAFE_RIGHT:
-                    drivetrain.drive(0.0, 0.5, 0.0); // Strafe right at 50% power
-                    if (runtime.seconds() >= 4.0) { // Strafe right for 4 seconds
-                        drivetrain.drive(0.0, 0.0, 0.0); // Stop driving
-                        state = AutoState.STOP_ROBOT;
-                    }
-                    break;
-
-                case STOP_ROBOT:
-                    drivetrain.drive(0.0, 0.0, 0.0);
-                    flywheel.stopFlywheel(); // Stop flywheel motor
-                    state = AutoState.DONE;
-                    break;
-
-                case DONE:
-                default:
-                    telemetry.addLine("Autonomous Finished");
-                    break;
-            }
-
-            telemetry.addData("Current State", state);
-            telemetry.addData("State Time", "%.1f sec", runtime.seconds());
-            telemetry.update();
+        // Step 1: Spin up flywheel
+        if (opModeIsActive()) {
+            flywheel.setFlywheelSpeed(0.6); // Sets flywheel speed to 60% power
+            sleep(2000); // Waits 2 seconds for flywheel to spin up
         }
+
+        // Step 2: Drive forward
+        if (opModeIsActive()) {
+            drivetrain.drive(0.5, 0.0, 0.0); // Drives forward at 50% power
+            sleep(1000); // Drives forward for 1 second
+            drivetrain.drive(0.0, 0.0, 0.0); // Stops drivetrain
+        }
+
+        // Step 3: Strafe right
+        if (opModeIsActive()) {
+            drivetrain.drive(0.0, 0.5, 0.0); // Strafes right at 50% power
+            sleep(2000); // Strafes right for 2 seconds
+            drivetrain.drive(0.0, 0.0, 0.0); // Stops drivetrain
+        }
+
+        // Step 4: Stop all systems
+        flywheel.stopFlywheel(); // Stops flywheel motor
+        drivetrain.drive(0.0, 0.0, 0.0); // Ensures drivetrain is stopped
+
+        telemetry.addData("Status", "Autonomous Finished"); // Signals autonomous is complete
+        telemetry.update(); // Updates telemetry display
     }
 }
