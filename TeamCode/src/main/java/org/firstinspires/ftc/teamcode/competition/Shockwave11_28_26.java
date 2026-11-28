@@ -18,7 +18,8 @@ Flywheel flywheel = new Flywheel();
 Intake intake = new Intake();
 ServoGates servoGates = new ServoGates();
 private static final double intakeMaxPower = 1.0;
-double flywheelPower, flyweelPowerOG = 0.7;
+double flywheelPower = 0.7;
+double flyweelPowerOG = 0.7;
 double forward, strafe, rotate;
 private boolean dpadWasPressed = false;
 
@@ -77,7 +78,7 @@ private boolean dpadWasPressed = false;
             intake.setIntakeMotor(intakeMaxPower); // Set intake power
         }
         else if (gamepad2.right_bumper) {
-            intake.setIntakeMotor(-0.7 * intakeMaxPower); // Allow intake to push ball back out
+            intake.setIntakeMotor(-0.35 * intakeMaxPower); // Allow intake to push ball back out
         }
         else {
             intake.setIntakeMotor(0);
